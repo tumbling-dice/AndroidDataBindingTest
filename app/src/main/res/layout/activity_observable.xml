@@ -39,5 +39,11 @@
             android:layout_height="wrap_content"
             android:text="change last name"
             android:onClick="@{data.changeLastName}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="next"
+            android:text="move next (BindAdapter)"/>
     </LinearLayout>
 </layout>
