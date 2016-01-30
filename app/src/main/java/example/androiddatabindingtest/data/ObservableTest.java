@@ -1,43 +1,48 @@
 package example.androiddatabindingtest.data;
 
 
-import android.databinding.ObservableField;
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.view.View;
 
-public class ObservableTest {
-	private final ObservableField<String> firstName = new ObservableField<String>();
-	private final ObservableField<String> lastName = new ObservableField<String>();
+import example.androiddatabindingtest.BR;
+
+public class ObservableTest extends BaseObservable {
+	private String firstName;
+	private String lastName;
 
 	public ObservableTest(String firstName, String lastName) {
-		this.firstName.set(firstName);
-		this.lastName.set(lastName);
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
-	public ObservableField<String> getFirstName() {
+	@Bindable
+	public String getFirstName() {
 		return this.firstName;
 	}
 
-	public ObservableField<String> getLastName() {
+	@Bindable
+	public String getLastName() {
 		return this.lastName;
 	}
 
 	public void changeFirstName(View v) {
-		final String firstName = this.firstName.get();
-
 		if ("hoge".equals(firstName)) {
-			this.firstName.set("foo");
+			this.firstName = "foo";
 		} else {
-			this.firstName.set("hoge");
+			this.firstName = "hoge";
 		}
+
+		notifyPropertyChanged(BR.firstName);
 	}
 
 	public void changeLastName(View v) {
-		final String lastName = this.lastName.get();
-
 		if ("piyo".equals(lastName)) {
-			this.lastName.set("bar");
+			this.lastName = "bar";
 		} else {
-			this.lastName.set("piyo");
+			this.lastName = "piyo";
 		}
+
+		notifyPropertyChanged(BR.lastName);
 	}
 }
